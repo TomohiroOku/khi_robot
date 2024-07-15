@@ -1,5 +1,7 @@
 # khi_robot [![Build Status](https://github.com/Kawasaki-Robotics/khi_robot/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Kawasaki-Robotics/khi_robot/actions/workflows/ci.yml)
 
+**This repository is in development for ROS 2 `Jazzy`!**
+
 This repository provides ROS support for KHI robots.
 ROS distribution `Kinetic`, `Melodic`, and `Noetic` are supported.
 
