@@ -66,8 +66,17 @@
         </inertial>
     </xacro:macro>
 
+    <!-- !The root link base_link has an inertia specified in the URDF, but KDL does not support a
+    root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF. -->
+    <link name="base_link" />
+
+    <joint name="joint0" type="fixed">
+        <parent link="base_link" />
+        <child link="link0" />
+    </joint>
+
     <!-- Link 0 -->
-    <link name="base_link">
+    <link name="link0">
         <visual>
             <geometry>
                 <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J0.stl" />
@@ -92,7 +101,7 @@
         <limit effort="1000.0" lower="${j1_lower_limit}" upper="${j1_upper_limit}"
             velocity="${j1_velocity_limit}" />
         <origin xyz="0 0 ${j0_length}" rpy="0 0 0" />
-        <parent link="base_link" />
+        <parent link="link0" />
         <child link="link1" />
         <dynamics damping="0.0" friction="0.0" />
     </joint>
