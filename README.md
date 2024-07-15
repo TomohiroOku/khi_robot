@@ -1,14 +1,13 @@
-khi_robot [![Build Status](https://github.com/Kawasaki-Robotics/khi_robot/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Kawasaki-Robotics/khi_robot/actions/workflows/ci.yml)
-===================================================================================================================================================
+# khi_robot [![Build Status](https://github.com/Kawasaki-Robotics/khi_robot/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Kawasaki-Robotics/khi_robot/actions/workflows/ci.yml)
 
-This repository provides ROS support for KHI robots.  
+This repository provides ROS support for KHI robots.
 ROS distribution `Kinetic`, `Melodic`, and `Noetic` are supported.
 
 ## How to Launch
 
 ### 1. Launch Control Node
 
-Start ```khi_robot_control``` as:
+Start `khi_robot_control` as:
 
 ```
 roslaunch khi_robot_bringup ***_bringup.launch ip:=***
@@ -48,20 +47,20 @@ Refer to [docs/ConnectingRealRobot.md](docs/ConnectingRealRobot.md)
 
 ## Supported Robot
 
- * duaro1
- * rs007l
- * rs007n
- * rs013n
- * rs020n
- * rs025n
- * rs030n
- * rs80n
+- duaro1
+- rs007l
+- rs007n
+- rs013n
+- rs020n
+- rs025n
+- rs030n
+- rs80n
 
 ## Notes
 
 ### About this software
 
-This software is experimental code. There are known issues and missing functionality.  
+This software is experimental code. There are known issues and missing functionality.
 The APIs are completely unstable and likely to change. Use in production systems is not recommended.
 
 ### About Coordinate
@@ -76,56 +75,59 @@ Origin of ROS coordinate is World origin.
 
 ### About controllers
 
-`khi_robot_control` uses `position_controllers/JointPositionController` as default, and it can also use `position_controllers/JointGroupPositionController`.  
+`khi_robot_control` uses `position_controllers/JointPositionController` as default, and it can also use `position_controllers/JointGroupPositionController`.
 
-`position_controllers/JointPositionController` : `***_arm_controller (e.g.)rs007n_arm_controller`  
-`position_controllers/JointGroupPositionController` : `***_joint_group_controller (e.g.)rs007n_joint_group_controller`  
+`position_controllers/JointPositionController` : `***_arm_controller (e.g.)rs007n_arm_controller`
+`position_controllers/JointGroupPositionController` : `***_joint_group_controller (e.g.)rs007n_joint_group_controller`
 
-To check available controllers, you can use service `controller_manager/list_controllers`.  
-To switch controllers, you can use service `controller_manager/switch_controller`.  
+To check available controllers, you can use service `controller_manager/list_controllers`.
+To switch controllers, you can use service `controller_manager/switch_controller`.
 
 (e.g.)
+
 ```
 $ rosservice call /controller_manager/list_controllers
-controller: 
-  - 
+controller:
+  -
     name: "rs007n_joint_group_controller"
     state: "stopped"
     type: "position_controllers/JointGroupPositionController"
-    claimed_resources: 
-      - 
+    claimed_resources:
+      -
         hardware_interface: "hardware_interface::PositionJointInterface"
         resources: [joint1, joint2, joint3, joint4, joint5, joint6]
-  - 
+  -
     name: "joint_state_controller"
     state: "running"
     type: "joint_state_controller/JointStateController"
-    claimed_resources: 
-      - 
+    claimed_resources:
+      -
         hardware_interface: "hardware_interface::JointStateInterface"
         resources: []
-  - 
+  -
     name: "rs007n_arm_controller"
     state: "running"
     type: "position_controllers/JointTrajectoryController"
-    claimed_resources: 
-      - 
+    claimed_resources:
+      -
         hardware_interface: "hardware_interface::PositionJointInterface"
         resources: [joint1, joint2, joint3, joint4, joint5, joint6]
 ```
+
 ```
 $ rosservice call /controller_manager/switch_controller "start_controllers:
 - 'rs007n_joint_group_controller'
 stop_controllers:
 - 'rs007n_arm_controller'
-strictness: 2" 
+strictness: 2"
 ok: True
 ```
-(http://wiki.ros.org/controller_manager)  
+
+(http://wiki.ros.org/controller_manager)
 
 ### About CAD data
 
-`***_ description` are using STL files based on CAD Data of the KHI website.  
+`***_ description` are using STL files based on CAD Data of the KHI website.
 Therefore [KHI CAD Data Disclaimer](https://robotics.kawasaki.com/en1/products/CAD-disclaimer/?language_id=1) is also applied to these files.
 
 ## Other Languages
