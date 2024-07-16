@@ -22,4 +22,10 @@
             <xacro:control_joint name="joint6" />
         </ros2_control>
     </xacro:macro>
+
+    <!-- FIXME [WARN] [controller_manager]: Could not enable FIFO RT scheduling policy. Consider
+    setting up your user to do FIFO
+    RT scheduling. See
+    [https://control.ros.org/master/doc/ros2_control/controller_manager/doc/userdoc.html] for
+    details. -->
 </robot>
