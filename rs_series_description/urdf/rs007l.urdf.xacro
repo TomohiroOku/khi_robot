@@ -87,10 +87,12 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J0.stl" />
+                <box size="0.2 0.25 0.2" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J0.stl" /> -->
             </geometry>
             <material name="White" />
-            <origin rpy="0 0 0" xyz="0 0 0" />
+            <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0" />
         </collision>
         <xacro:default_inertial mass="${j0_mass}" />
     </link>
@@ -118,10 +120,12 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J1.stl" />
+                <box size="0.25 0.25 0.25" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J1.stl" /> -->
             </geometry>
             <material name="White" />
-            <origin rpy="0 0 0" xyz="0 0 0" />
+            <origin rpy="0 0 0" xyz="0 0 -0.05" />
         </collision>
         <xacro:default_inertial mass="${j1_mass}" />
     </link>
@@ -148,10 +152,12 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J2.stl" />
+                <box size="0.2 0.2 0.6" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J2.stl" /> -->
             </geometry>
             <material name="White" />
-            <origin xyz="0 0 0" rpy="0 ${dh_j1_j2_roty*-1} 0" />
+            <origin xyz="0.25 0 -0.1" rpy="0 ${dh_j1_j2_roty*-1} 0" />
         </collision>
         <xacro:default_inertial mass="0${j2_mass}" />
     </link>
@@ -178,7 +184,9 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J3.stl" />
+                <box size="0.2 0.2 0.2" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J3.stl" /> -->
             </geometry>
             <material name="White" />
             <origin xyz="0 0 0" rpy="0 ${dh_j1_j2_roty*-1} 0" />
@@ -208,10 +216,12 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J4.stl" />
+                <box size="0.15 0.15 0.4" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J4.stl" /> -->
             </geometry>
             <material name="White" />
-            <origin xyz="0 0 ${j4_length}" rpy="0 0 0" />
+            <origin xyz="0 0 ${j4_length-0.2}" rpy="0 0 0" />
         </collision>
         <xacro:default_inertial mass="${j4_mass}" />
     </link>
@@ -238,10 +248,12 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J5.stl" />
+                <box size="0.1 0.1 0.1" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J5.stl" /> -->
             </geometry>
             <material name="White" />
-            <origin xyz="0 0 0" rpy="0 ${dh_j4_j5_roty*-1} 0" />
+            <origin xyz="0.05 0 0" rpy="0 ${dh_j4_j5_roty*-1} 0" />
         </collision>
         <xacro:default_inertial mass="${j5_mass}" />
     </link>
@@ -268,7 +280,9 @@
         <collision>
             <geometry>
                 <!-- TODO replace collision mesh into *.dae for lower computation cost -->
-                <mesh filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J6.stl" />
+                <cylinder radius="0.02" length="0.005" />
+                <!-- <mesh
+                filename="package://rs_series_description/meshes/visual/rs007l/RS007L_J6.stl" /> -->
             </geometry>
             <material name="Black" />
             <origin xyz="0 0 0" rpy="0 0 0" />
