@@ -14,12 +14,12 @@
             <hardware>
                 <plugin>robot_hardware/RobotSystem</plugin>
             </hardware>
-            <!-- <xacro:control_joint name="joint1" />
+            <xacro:control_joint name="joint1" />
             <xacro:control_joint name="joint2" />
             <xacro:control_joint name="joint3" />
             <xacro:control_joint name="joint4" />
             <xacro:control_joint name="joint5" />
-            <xacro:control_joint name="joint6" /> -->
+            <xacro:control_joint name="joint6" />
         </ros2_control>
     </xacro:macro>
 </robot>
