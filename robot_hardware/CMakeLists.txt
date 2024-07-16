@@ -1,42 +1,47 @@
-cmake_minimum_required(VERSION 3.8)
-project(robot_hardware)
+cmake_minimum_required(VERSION 3.16)
+project(robot_hardware LANGUAGES CXX)
 
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
+if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
+  add_compile_options(-Wall -Wextra)
 endif()
+
+set(THIS_PACKAGE_INCLUDE_DEPENDS
+  hardware_interface
+  pluginlib
+  rclcpp
+  rclcpp_lifecycle
+)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_ros REQUIRED)
-find_package(pluginlib REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
-find_package(hardware_interface REQUIRED)
-find_package(rclcpp REQUIRED)
+foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  find_package(${Dependency} REQUIRED)
+endforeach()
 
-add_library(robot_hardware_interface src/robot_hardware_interface.cpp)
-add_library(robot_hardware::robot_hardware_interface ALIAS robot_hardware_interface)
-target_compile_features(robot_hardware_interface PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-target_include_directories(robot_hardware_interface PUBLIC
+add_library(robot_system SHARED src/robot_system.cpp)
+add_library(robot_hardware::robot_system ALIAS robot_system)
+target_compile_features(robot_system PUBLIC cxx_std_17)  # Require C++17
+target_include_directories(robot_system PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
 ament_target_dependencies(
-  robot_hardware_interface
-  "pluginlib"
-  "rclcpp_lifecycle"
-  "hardware_interface"
-  "rclcpp"
+  robot_system PUBLIC
+  ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
 # Causes the visibility macros to use dllexport rather than dllimport,
 # which is appropriate when building the dll but not consuming it.
-target_compile_definitions(robot_hardware_interface PRIVATE "ROBOT_HARDWARE_BUILDING_LIBRARY")
+target_compile_definitions(robot_system PRIVATE "ROBOT_HARDWARE_BUILDING_LIBRARY")
+
+# Export hardware plugins
+pluginlib_export_plugin_description_file(hardware_interface ${PROJECT_NAME}.xml)
 
 install(
   DIRECTORY include/
   DESTINATION include/${PROJECT_NAME}
 )
 install(
-  TARGETS robot_hardware_interface
+  TARGETS robot_system
   EXPORT export_${PROJECT_NAME}
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
@@ -55,14 +60,8 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_export_include_directories(
-  "include/${PROJECT_NAME}"
-)
-ament_export_libraries(
-  robot_hardware_interface
-)
 ament_export_targets(
-  export_${PROJECT_NAME}
+  export_${PROJECT_NAME} HAS_LIBRARY_TARGET
 )
-
+ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()

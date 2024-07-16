@@ -12,15 +12,14 @@
     <xacro:macro name="rs007l_ros2_control" params="name">
         <ros2_control name="${name}" type="system">
             <hardware>
-                <plugin>mock_components/GenericSystem</plugin>
-                <param name="calculate_dynamics">true</param>
+                <plugin>robot_hardware/RobotSystem</plugin>
             </hardware>
-            <xacro:control_joint name="joint1" />
+            <!-- <xacro:control_joint name="joint1" />
             <xacro:control_joint name="joint2" />
             <xacro:control_joint name="joint3" />
             <xacro:control_joint name="joint4" />
             <xacro:control_joint name="joint5" />
-            <xacro:control_joint name="joint6" />
+            <xacro:control_joint name="joint6" /> -->
         </ros2_control>
     </xacro:macro>
 </robot>

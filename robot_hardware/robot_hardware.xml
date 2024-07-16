@@ -1,0 +1,10 @@
+<library path="robot_system">
+    <class
+        name="robot_hardware/RobotSystem"
+        type="robot_hardware::RobotSystem"
+        base_class_type="hardware_interface::SystemInterface">
+        <description>
+            TODO describe the plugin
+        </description>
+    </class>
+</library>
