@@ -1,6 +1,7 @@
 controller_manager:
   ros__parameters:
-    update_rate: 10 # Hz
+    #? 1 kHz  would be too fast in case of lidar...
+    update_rate: 1000 # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
