@@ -6,10 +6,9 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
-find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_auto REQUIRED)
 find_package(ament_cmake_ros REQUIRED)
-find_package(pluginlib REQUIRED)
-find_package(controller_interface REQUIRED)
+ament_auto_find_build_dependencies()
 
 pluginlib_export_plugin_description_file(robot_controller robot_controller.xml)
 
@@ -21,7 +20,7 @@ target_include_directories(robot_controller PUBLIC
   $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
 ament_target_dependencies(
   robot_controller
-  "pluginlib"
+  pluginlib
   controller_interface
 )
 
@@ -53,14 +52,8 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_export_include_directories(
-  "include/${PROJECT_NAME}"
-)
-ament_export_libraries(
-  robot_controller
-)
 ament_export_targets(
   export_${PROJECT_NAME}
 )
 
-ament_package()
+ament_auto_package()
