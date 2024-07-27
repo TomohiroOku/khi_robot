@@ -11,7 +11,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    pkg_description = get_package_share_directory("rs_series_description")
+    pkg_description = get_package_share_directory("rs_series_bringup")
 
     robot_description = xacro.process_file(
         os.path.join(pkg_description, "urdf", "rs007l.urdf.xacro")
