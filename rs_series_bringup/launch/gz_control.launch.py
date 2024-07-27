@@ -28,7 +28,7 @@ def generate_launch_description():
     pkg_description = get_package_share_directory("rs_series_bringup")
 
     robot_description = xacro.process_file(
-        os.path.join(pkg_description, "urdf", "rs007l.gz.urdf.xacro")
+        os.path.join(pkg_description, "urdf", "rs007l.gz_control.urdf.xacro")
     ).toxml()
     rviz_config = os.path.join(
         get_package_share_directory("rs_series_description"), "config", "rs_series.rviz"
