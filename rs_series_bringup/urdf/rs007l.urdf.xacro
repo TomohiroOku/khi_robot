@@ -3,5 +3,13 @@
     <xacro:include filename="$(find rs_series_description)/urdf/rs007l.urdf.xacro" />
     <xacro:include filename="$(find rs_series_bringup)/ros2_control/rs007l.ros2_control.xacro" />
 
+    <link name="world" />
+
+    <joint name="base_joint" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
     <xacro:rs007l_ros2_control name="RS007L Robot System" />
 </robot>
